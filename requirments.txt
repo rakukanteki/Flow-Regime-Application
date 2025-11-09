@@ -35,7 +35,7 @@ typing-extensions==4.15.0
 tzdata==2025.2
 urllib3==2.5.0
 watchdog==6.0.0
-matplotlib==3.8.1
-pandas==2.3.3
-numpy==2.3.4
-plotly==6.4.0
+matplotlib
+pandas
+numpy
+plotly
