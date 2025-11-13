@@ -523,21 +523,11 @@ elif page == "Evaluate Model":
                             predicted_class_name = CLASS_NAMES[result['predicted_class']]
                             
                             # Display prediction metrics
-                            col1, col2, col3 = st.columns(3)
+                            col1, col2 = st.columns(2)
                             with col1:
                                 st.metric("Predicted Flow Regime", predicted_class_name)
                             with col2:
-                                st.metric("Confidence", f"{result['confidence']:.2f}%")
-                            with col3:
                                 st.metric("Windows Analyzed", result['num_windows'])
-                            
-                            # Display probabilities
-                            st.markdown("**Class Probabilities:**")
-                            prob_df = pd.DataFrame({
-                                'Flow Regime': CLASS_NAMES,
-                                'Probability': [f"{p*100:.2f}%" for p in result['probabilities']]
-                            })
-                            st.dataframe(prob_df, hide_index=True, use_container_width=True)
                             
                             # Display velocity predictions
                             st.markdown("**Predicted Velocities:**")
@@ -646,17 +636,8 @@ elif page == "User Guideline":
     
     <h4>Tips for Best Results</h4>
     <ul>
-    <li>Ensure pressure data is clean and free from outliers or sensor errors</li>
     <li>Use data collected at steady-state conditions for more accurate predictions</li>
     <li>Provide accurate velocity values that match your experimental conditions</li>
-    <li>If confidence is low (&lt;70%), consider collecting more data or checking sensor calibration</li>
-    </ul>
-    
-    <h4>Troubleshooting</h4>
-    <ul>
-    <li><strong>Error: "No Pressure column found"</strong> - Rename your pressure column to include the word "pressure"</li>
-    <li><strong>Error: "Not enough data points"</strong> - Ensure you have at least 40 consecutive pressure measurements</li>
-    <li><strong>Low confidence predictions</strong> - May indicate transitional flow regimes or noisy data</li>
     </ul>
     </div>
     """, unsafe_allow_html=True)
